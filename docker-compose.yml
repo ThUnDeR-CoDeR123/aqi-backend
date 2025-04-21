@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  api:
+    build: .
+    container_name: aqi-prediction-api
+    ports:
+      - "80:8000"
+    volumes:
+      - ./.env:/app/.env
+    restart: unless-stopped
+    environment:
+      - MODEL_PATH=/app/model.h5
+      - APP_PORT=8000
+      - APP_HOST=0.0.0.0
+      - DEBUG=False
